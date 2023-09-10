@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+//code by Jorge Quintero, Brissa Ayala, Juan Carlos Gil Salazar, Blanca E. Ramirez
+import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, Button } from 'react-native';
-import Slider from '@react-native-community/slider';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import NewPage from './gatito'; // Import the NewPage component
 import AnotherPage from './login';
 
 export default function App() {
-  const [sliderValue, setSliderValue] = useState(0);
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -25,8 +23,6 @@ export default function App() {
 }
 
 function HomeScreen({ navigation }) {
-  const [sliderValue, setSliderValue] = useState(0);
-
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -34,24 +30,16 @@ function HomeScreen({ navigation }) {
         style={styles.background}
       >
         <View style={styles.content}>
-          <Text style={styles.text}>Hello</Text>
-          <Slider
-            style={styles.slider}
-            minimumValue={0}
-            maximumValue={100}
-            value={sliderValue}
-            onValueChange={(newValue) => setSliderValue(newValue)}
-          />
-          <Text style={styles.sliderValue}>Value: {sliderValue.toFixed(2)}</Text>
+          <Text style={styles.text}>Track Cat</Text>
           
           {/* Add a button to navigate to the NewPage */}
           <Button
-            title="Go to New Page"
+            title="Track"
             onPress={() => navigation.navigate('NewPage')}
           />
           {/* Add the second button to navigate to AnotherPage */}
           <Button
-            title="Go to Another Page"
+            title="Log in"
             onPress={() => navigation.navigate('AnotherPage')}
           />
         </View>
@@ -78,13 +66,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 36,
     color: 'purple',
-  },
-  slider: {
-    width: 200,
-    marginTop: 20,
-  },
-  sliderValue: {
-    fontSize: 24,
-    marginTop: 10,
   },
 });
