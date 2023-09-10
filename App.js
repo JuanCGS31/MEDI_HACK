@@ -1,64 +1,101 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button, StyleSheet, ImageBackground } from 'react-native';
 import Slider from '@react-native-community/slider';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as Font from 'expo-font';
+import NewPage from './login.js';
 
-export default function App() {
-  // Define a state variable called sliderValue with an initial value of 0.
+// Define the HomeScreen component
+function HomeScreen({ navigation }) {
   const [sliderValue, setSliderValue] = useState(0);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
+  // Load the custom font
+  useEffect(() => {
+    async function loadFont() {
+      await Font.loadAsync({
+        // Use the correct font family name here
+        'custom-font': require('./assets/fonts/Kitchen Restaurant.otf'),
+      });
+      setFontLoaded(true);
+    }
+    loadFont();
+  }, []);
+
+  // Render the HomeScreen component
   return (
     <View style={styles.container}>
-      {/* Create an ImageBackground component */}
       <ImageBackground
-        source={require('./assets/Background.png')} // Set the background image source
-        style={styles.background} // Apply styles to the ImageBackground
+        source={require('./assets/Background.png')}
+        style={styles.background}
       >
-        {/* Create a container for content within the ImageBackground */}
         <View style={styles.content}>
-          {/* Display a text element with the text "Hello" */}
-          <Text style={styles.text}>Hello</Text>
-          
-          {/* Create a Slider component */}
+          {/* Apply the custom font to the text with the correct font family name */}
+          {fontLoaded && (
+            <Text style={[styles.text, { fontFamily: 'custom-font' }]}>Hello</Text>
+          )}
           <Slider
-            style={styles.slider} // Apply styles to the Slider
-            minimumValue={0} // Set the minimum value of the Slider
-            maximumValue={100} // Set the maximum value of the Slider
-            value={sliderValue} // Set the current value of the Slider
-            onValueChange={(newValue) => setSliderValue(newValue)} // Handle Slider value changes
+            style={styles.slider}
+            minimumValue={0}
+            maximumValue={100}
+            value={sliderValue}
+            onValueChange={(newValue) => setSliderValue(newValue)}
           />
-          
-          {/* Display the current value of the Slider */}
           <Text style={styles.sliderValue}>Value: {sliderValue.toFixed(2)}</Text>
+          <Button
+            title="Go to New Page"
+            onPress={() => navigation.navigate('NewPage')}
+          />
         </View>
       </ImageBackground>
     </View>
   );
 }
 
-// Define styles using StyleSheet.create
+// Create a Stack Navigator for navigation between screens
+const Stack = createStackNavigator();
+
+// Define the main App component
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="NewPage" component={NewPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+// Define styles for components using StyleSheet
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Make the container take up the full screen
+    flex: 1,
   },
   background: {
-    flex: 1, // Make the background image take up the full screen
-    resizeMode: 'contain', // Maintain aspect ratio and fit within the container
+    flex: 1,
+    resizeMode: 'contain',
   },
   content: {
-    flex: 1, // Center content within the ImageBackground
-    justifyContent: 'center', // Center vertically
-    alignItems: 'center', // Center horizontally
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    fontSize: 36, // Set the font size of the text
-    color: 'purple', // Set the text color to purple
+    fontSize: 36,
+    color: 'purple',
   },
   slider: {
-    width: 200, // Set the width of the Slider component
-    marginTop: 20, // Add margin spacing at the top
+    width: 200,
+    marginTop: 20,
   },
   sliderValue: {
-    fontSize: 24, // Set the font size of the Slider value text
-    marginTop: 10, // Add margin spacing at the top
+    fontSize: 24,
+    marginTop: 10,
   },
 });
