@@ -39,12 +39,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.content}>
           <Text style={styles.text}>Track Cat</Text>
           
-          {/* Add a button to navigate to the NewPage */}
-          <Button
-            title="Track"
-            onPress={() => navigation.navigate('NewPage')}
-          />
-          {/* Add the second button to navigate to AnotherPage */}
+          {/* Add the "Log in" button */}
           <Button
             title="Log in"
             onPress={() => navigation.navigate('AnotherPage')}
@@ -74,4 +69,4 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: 'purple',
   },
-});
+})
