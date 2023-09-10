@@ -10,7 +10,8 @@ export default function AnotherPage({ navigation }) {
     // For example, you can send the username and password to a server for authentication
     // This is a basic example for demonstration purposes
     if (username === 'yourUsername' && password === 'yourPassword') {
-      alert('Login successful!');
+      // Navigate to the "NewPage" upon successful login
+      navigation.navigate('NewPage');
     } else {
       alert('Login failed. Please check your credentials.');
     }
