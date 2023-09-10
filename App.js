@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import NewPage from './gatito'; // Import the NewPage component
 import AnotherPage from './login';
+import Description from './description';
 
 export default function App() {
   return (
@@ -23,6 +24,12 @@ export default function App() {
           name="AnotherPage"
           component={AnotherPage}
           options={{ headerShown: false }} // Hide the header for AnotherPage
+        />
+        <Stack.Screen 
+        name="Description" 
+        component={Description}
+        options={{ headerShown: false }}
+
         />
       </Stack.Navigator>
     </NavigationContainer>

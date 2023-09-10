@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image, Button } from 'react-native';
 import Slider from '@react-native-community/slider';
+import Description from './description';
 
 export default function NewPage({ navigation }) {
-  const [sliderValue, setSliderValue] = React.useState(0);
+  const [sliderValue, setSliderValue] = useState(0);
 
   // Function to determine which image to display based on sliderValue
   const getImageForSliderValue = () => {
@@ -60,6 +61,12 @@ export default function NewPage({ navigation }) {
         <Image
           source={getImageForSliderValue()}
           style={styles.bottomImage}
+        />
+
+        {/* Add a button to navigate to the "Description" page */}
+        <Button
+          title="Next"
+          onPress={() => navigation.navigate('Description')}
         />
       </View>
     </ImageBackground>
