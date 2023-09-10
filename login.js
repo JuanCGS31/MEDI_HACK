@@ -9,7 +9,7 @@ export default function AnotherPage({ navigation }) {
     // You can add your login logic here
     // For example, you can send the username and password to a server for authentication
     // This is a basic example for demonstration purposes
-    if (username === 'yourUsername' && password === 'yourPassword') {
+    if (username === 'email@email.com' && password === 'yourPassword') {
       // Navigate to the "NewPage" upon successful login
       navigation.navigate('NewPage');
     } else {
@@ -30,7 +30,7 @@ export default function AnotherPage({ navigation }) {
         <Text style={styles.text}>Login Page</Text>
         <TextInput
           style={styles.input}
-          placeholder="Username"
+          placeholder="Email"
           onChangeText={(text) => setUsername(text)}
           value={username}
         />
