@@ -9,7 +9,7 @@ export default function AnotherPage({ navigation }) {
     // You can add your login logic here
     // For example, you can send the username and password to a server for authentication
     // This is a basic example for demonstration purposes
-    if (username === 'email@email.com' && password === 'yourPassword') {
+    if (username === 'email@gmail.com' && password === 'Password') {
       // Navigate to the "NewPage" upon successful login
       navigation.navigate('NewPage');
     } else {
