@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import NewPage from './gatito'; // Import the NewPage component
 import AnotherPage from './login';
 import Description from './description';
+import Help from './help';
 
 export default function App() {
   return (
@@ -26,10 +27,14 @@ export default function App() {
           options={{ headerShown: false }} // Hide the header for AnotherPage
         />
         <Stack.Screen 
-        name="Description" 
-        component={Description}
-        options={{ headerShown: false }}
-
+          name="Description" 
+          component={Description}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Help" 
+          component={Help}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -76,4 +81,5 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: 'purple',
   },
-})
+});
+

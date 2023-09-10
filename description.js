@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Button, TextInput, TouchableOpacity } from 'react-native';
 
 export default function Description({ navigation }) {
   const [input1, setInput1] = useState('');
@@ -22,7 +22,7 @@ export default function Description({ navigation }) {
         <View style={styles.content}>
           {/* Text Input 1 */}
           <View style={styles.inputContainer}>
-            <Text style={styles.inputTitle}>¿Qué emociones experimentaste durante esta experiencia?</Text>
+            <Text style={styles.inputTitle}>What emotions did you feel during this experience?</Text>
             <TextInput
               style={styles.input}
               placeholder="Enter text here"
@@ -35,7 +35,7 @@ export default function Description({ navigation }) {
 
           {/* Text Input 2 */}
           <View style={styles.inputContainer}>
-            <Text style={styles.inputTitle}>¿Cómo describirías tu estado emocional actual?</Text>
+            <Text style={styles.inputTitle}>How would you describe your current mental state?</Text>
             <TextInput
               style={styles.input}
               placeholder="Enter text here"
@@ -48,7 +48,7 @@ export default function Description({ navigation }) {
 
           {/* Text Input 3 */}
           <View style={styles.inputContainer}>
-            <Text style={styles.inputTitle}>¿En qué medida consideras esta experiencia como positiva o negativa?</Text>
+            <Text style={styles.inputTitle}>To what extent do you consider this experience positive or negative?</Text>
             <TextInput
               style={styles.input}
               placeholder="Enter text here"
@@ -59,6 +59,14 @@ export default function Description({ navigation }) {
             />
           </View>
         </View>
+
+        {/* Help Button */}
+        <TouchableOpacity
+          style={styles.helpButton}
+          onPress={() => navigation.navigate('Help')}
+        >
+          <Text style={styles.helpButtonText}>?</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -91,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'purple',
     marginBottom: 5,
+    textAlign: 'center', // Center the text horizontally
   },
   input: {
     width: 300,
@@ -100,5 +109,20 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 8,
     textAlignVertical: 'top', // Align text to the top
+  },
+  helpButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    width: 40,
+    height: 40,
+    backgroundColor: 'purple',
+    borderRadius: 20, // Make it a circle
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  helpButtonText: {
+    color: 'white',
+    fontSize: 24,
   },
 });
