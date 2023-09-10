@@ -1,4 +1,3 @@
-//code by Jorge Quintero, Brissa Ayala, Juan Carlos Gil Salazar, Blanca E. Ramirez
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,8 +14,16 @@ export default function App() {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="NewPage" component={NewPage} />
-        <Stack.Screen name="AnotherPage" component={AnotherPage} />
+        <Stack.Screen
+          name="NewPage"
+          component={NewPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AnotherPage"
+          component={AnotherPage}
+          options={{ headerShown: false }} // Hide the header for AnotherPage
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

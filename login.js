@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
-export default function AnotherPage() {
+export default function AnotherPage({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,27 +18,46 @@ export default function AnotherPage() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Login Page</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        onChangeText={(text) => setUsername(text)}
-        value={username}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-        secureTextEntry // Hide password input
-      />
-      <Button title="Login" onPress={handleLogin} />
+      <View style={styles.buttonContainer}>
+        {/* Add a button to go back to the previous screen (App.js) */}
+        <Button
+          title="Go Back"
+          onPress={() => navigation.goBack()}
+        />
+      </View>
+      <View style={styles.content}>
+        <Text style={styles.text}>Login Page</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          onChangeText={(text) => setUsername(text)}
+          value={username}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          secureTextEntry // Hide password input
+        />
+        <Button title="Login" onPress={handleLogin} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    alignSelf: 'flex-start',
+    marginTop: 20, // Increase the marginTop value to bring the button down
+    marginLeft: 10,
+  },
+  content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

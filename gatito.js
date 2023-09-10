@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, ImageBackground, Image, Button } from 'react-native';
 import Slider from '@react-native-community/slider';
 
-export default function NewPage() {
-  const [sliderValue, setSliderValue] = useState(0);
+export default function NewPage({ navigation }) {
+  const [sliderValue, setSliderValue] = React.useState(0);
 
   // Function to determine which image to display based on sliderValue
   const getImageForSliderValue = () => {
@@ -19,11 +19,11 @@ export default function NewPage() {
   // Function to determine the text to display based on sliderValue
   const getTextForSliderValue = () => {
     if (sliderValue < 33) {
-      return 'Low Value';
+      return 'Down';
     } else if (sliderValue < 66) {
-      return 'Medium Value';
+      return 'Neutral';
     } else {
-      return 'High Value';
+      return 'Superb';
     }
   };
 
@@ -33,8 +33,15 @@ export default function NewPage() {
       style={styles.background}
     >
       <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          {/* Add a button to go back to the previous screen (App.js) */}
+          <Button
+            title="Go Back"
+            onPress={() => navigation.goBack()}
+          />
+        </View>
         <View style={styles.content}>
-          <Text style={styles.text}>This is the New Page!</Text>
+          <Text style={styles.text}>How are you feeling?</Text>
 
           {/* Add the Slider component */}
           <Slider
@@ -44,9 +51,6 @@ export default function NewPage() {
             value={sliderValue}
             onValueChange={(newValue) => setSliderValue(newValue)}
           />
-
-          {/* Display the slider value */}
-          <Text style={styles.sliderValue}>Slider Value: {sliderValue.toFixed(2)}</Text>
 
           {/* Display text based on sliderValue */}
           <Text style={styles.sliderText}>{getTextForSliderValue()}</Text>
@@ -72,6 +76,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  buttonContainer: {
+    alignSelf: 'flex-start',
+    marginTop: 20, // Increase the marginTop value to bring the button down
+    marginLeft: 10,
+  },
   content: {
     flex: 1,
     justifyContent: 'center',
@@ -79,16 +88,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    color: 'blue',
+    color: 'purple',
   },
   slider: {
     width: 200,
     marginTop: 20,
-  },
-  sliderValue: {
-    fontSize: 18,
-    marginTop: 10,
-    color: 'white',
   },
   sliderText: {
     fontSize: 18,
