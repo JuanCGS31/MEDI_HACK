@@ -58,14 +58,17 @@ export default function NewPage({ navigation }) {
         </View>
 
         {/* Display image based on sliderValue */}
-        <Image
-          source={getImageForSliderValue()}
-          style={styles.bottomImage}
-        />
+        <View style={styles.imageContainer}>
+          <Image
+            source={getImageForSliderValue()}
+            style={styles.bottomImage}
+          />
+          <Text style={styles.imageText}>Mr.Gato</Text>
+        </View>
 
         {/* Add a button to navigate to the "Description" page */}
         <Button
-          title="Next"
+          title="More"
           onPress={() => navigation.navigate('Description')}
         />
       </View>
@@ -106,9 +109,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'white',
   },
+  imageContainer: {
+    alignItems: 'center',
+  },
   bottomImage: {
     width: 400, // Adjust the width as needed for the images
     height: 400, // Adjust the height as needed for the images
-    marginBottom: 20, // Adjust the margin as needed
+    marginBottom: 10, // Adjust the margin as needed
+  },
+  imageText: {
+    fontSize: 40, // Adjust the font size to make it bigger
+    color: 'purple',
+    marginTop: -20, // Move it slightly up
+    fontWeight: 'bold', // Make the text bold
   },
 });
